@@ -65,8 +65,10 @@
 
 -- COMMAND ----------
 
--- TODO
-<FILL_IN> f"{DA.paths.kafka_events}" 
+create table if not exists events_json
+(key binary, offset bigint, partition int, timestamp bigint, topic string, value binary)
+using json
+location "${DA.paths.kafka_events}"
 
 -- COMMAND ----------
 
@@ -84,6 +86,10 @@
 -- MAGIC 
 -- MAGIC total = spark.table("events_json").count()
 -- MAGIC assert total == 2252, f"Expected 2252 records, found {total}"
+
+-- COMMAND ----------
+
+select * from events_json
 
 -- COMMAND ----------
 

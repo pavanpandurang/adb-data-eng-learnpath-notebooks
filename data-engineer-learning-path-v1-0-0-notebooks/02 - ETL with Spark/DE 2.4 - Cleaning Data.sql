@@ -81,7 +81,7 @@ FROM users_dirty
 
 -- COMMAND ----------
 
-SELECT count_if(email IS NULL) FROM users_dirty;
+--SELECT count_if(email IS NULL) FROM users_dirty;
 SELECT count(*) FROM users_dirty WHERE email IS NULL;
 
 -- COMMAND ----------
@@ -131,6 +131,10 @@ WHERE user_id IS NOT NULL
 GROUP BY user_id, user_first_touch_timestamp;
 
 SELECT count(*) FROM deduped_users
+
+-- COMMAND ----------
+
+select count(*) from deduped_users where email is null
 
 -- COMMAND ----------
 
